@@ -6,7 +6,7 @@ public abstract class Aggregate
 {
     public readonly Uuid Id;
     public readonly DateTime CreatedAt;
-    public DateTime UpdatedAt { get; }
+    public DateTime UpdatedAt { get; protected set; }
 
     protected Aggregate(Uuid id)
     {
