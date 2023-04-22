@@ -6,7 +6,7 @@ public record Command
 {
     public Uuid CommandId;
     
-    Command(Uuid? commandId = null)
+    protected Command(Uuid? commandId = null)
     {
         CommandId = commandId ?? Uuid.V4();
     }
