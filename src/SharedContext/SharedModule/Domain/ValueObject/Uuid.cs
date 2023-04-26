@@ -4,7 +4,7 @@ using static System.Guid;
 
 namespace app.SharedContext.SharedModule.Domain.ValueObject;
 
-public sealed record Uuid(string Value) : StringValueObject(Value)
+public record Uuid(string Value) : ValueObject<string>(Value)
 {
     private const string UuidRegex = "/^[0-9A-F]{8}-[0-9A-F]{4}-4[0-9A-F]{3}-[89AB][0-9A-F]{3}-[0-9A-F]{12}$/i";
 

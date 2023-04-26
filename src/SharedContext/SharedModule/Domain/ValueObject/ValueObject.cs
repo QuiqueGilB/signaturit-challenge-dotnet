@@ -14,3 +14,11 @@ public abstract record ValueObject: IValidatable
         
     }
 }
+
+public abstract record ValueObject<T>(T Value) : ValueObject
+{
+    public override string ToString()
+    {
+        return Value?.ToString() ?? "";
+    }
+}
