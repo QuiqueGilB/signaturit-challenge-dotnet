@@ -17,7 +17,7 @@ public class MemoryRepository<T> : IRepository<T> where T : AggregateRoot
 
     public Task Save(T entity)
     {
-        Storage.Add(entity.Id.ToString(), entity);
+        Storage.TryAdd(entity.Id.ToString(), entity);
         return Task.CompletedTask;
     }
 }
