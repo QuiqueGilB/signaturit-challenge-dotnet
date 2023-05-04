@@ -2,7 +2,9 @@ using app.SharedContext.SharedModule.Domain.ValueObject;
 
 namespace app.SharedContext.CqrsModule.Domain.Model;
 
-public record Query<T>
+public record Query<T>(Uuid QueryId) : Query(QueryId);
+
+public record Query
 {
     public readonly Uuid QueryId;
 
@@ -11,5 +13,3 @@ public record Query<T>
         QueryId = queryId ?? Uuid.V4();
     }
 }
-
-public record Query : Query<object>;
