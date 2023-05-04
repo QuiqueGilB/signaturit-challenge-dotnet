@@ -4,11 +4,13 @@ using app.SharedContext.SharedModule.Domain.ValueObject;
 
 namespace app.SharedContext.PersistenceModule.Domain.Service;
 
-public class MemoryRepository<T> : IRepository<T> where T : AggregateRoot
+public class MemoryRepository<T, TK> : IRepository<T, TK> 
+    where T : AggregateRoot<TK>
+    where TK : Uuid
 {
-    protected readonly Dictionary<string, T> Storage = new Dictionary<string, T>();
+    protected readonly Dictionary<string, T> Storage = new();
 
-    public Task<T?> ById(Uuid id)
+    public Task<T?> ById(TK id)
     {
         var key = id.ToString();
         Storage.TryGetValue(key, out var value);
