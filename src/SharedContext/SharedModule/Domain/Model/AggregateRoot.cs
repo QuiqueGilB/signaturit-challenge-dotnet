@@ -2,9 +2,9 @@ using app.SharedContext.SharedModule.Domain.ValueObject;
 
 namespace app.SharedContext.SharedModule.Domain.Model;
 
-public abstract class AggregateRoot : Aggregate
+public abstract class AggregateRoot<T> : Aggregate<T> where T : Uuid
 {
-    protected AggregateRoot(Uuid id) : base(id)
+    protected AggregateRoot(T id) : base(id)
     {
     }
 }
