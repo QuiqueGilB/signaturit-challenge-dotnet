@@ -11,6 +11,11 @@ public class FindContractParticipantsQueryHandler
 {
     private readonly IContractRepository _contractRepository;
 
+    public FindContractParticipantsQueryHandler(IContractRepository contractRepository)
+    {
+        _contractRepository = contractRepository;
+    }
+
     public async Task<QueryResponse<IEnumerable<ParticipantView>>> Ask(FindContractParticipantsQuery query)
     {
         var contract = await _contractRepository.ById(query.ContractId);
@@ -18,7 +23,7 @@ public class FindContractParticipantsQueryHandler
 
         var participantsView = contract.Participants
             .Select(participant => new ParticipantView(participant.Id, participant.Signatures));
-        
+
         return new QueryResponse<IEnumerable<ParticipantView>>(
             participantsView,
             new QueryMetadata(participantsView.Count(), participantsView.Count(), 0, 0)
