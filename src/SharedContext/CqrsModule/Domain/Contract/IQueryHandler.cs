@@ -7,7 +7,7 @@ public interface IQueryHandler<in T, TK> : IQueryHandler
 {
     async Task<QueryResponse<O>> IQueryHandler.Ask<O>(Query<O> query)
     {
-        var queryResponse = await Ask(query as T);
+        var queryResponse = await Ask((query as T)!);
         return (QueryResponse<O>)Convert.ChangeType(queryResponse, typeof(QueryResponse<O>));
     }
 
