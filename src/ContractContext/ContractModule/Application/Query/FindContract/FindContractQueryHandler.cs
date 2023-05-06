@@ -1,4 +1,3 @@
-using app.ContractContext.ContractModule.Application.Response;
 using app.ContractContext.ContractModule.Domain.Contract;
 using app.ContractContext.ContractModule.Domain.Exception;
 using app.ContractContext.ContractModule.Domain.View;
