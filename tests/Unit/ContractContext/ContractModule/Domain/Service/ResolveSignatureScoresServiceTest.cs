@@ -1,6 +1,7 @@
 using app.ContractContext.ContractModule.Domain.Service;
 using app.ContractContext.ContractModule.Domain.ValueObject;
 using app.ContractContext.SharedModule.Domain.ValueObject;
+using Xunit;
 
 namespace app.Tests.Unit.ContractContext.ContractModule.Domain.Service;
 
