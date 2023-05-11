@@ -15,26 +15,30 @@ public class ResolveNeedSignatureToWinService
 
     public Signature[] NeedToWin(Score maxScore, IEnumerable<Signature> signatures)
     {
+        signatures = signatures.ToImmutableList();
+
         if (maxScore.Value < _resolveSignatureScoresService.Accumulate(signatures).Value)
         {
             return Array.Empty<Signature>();
         }
 
-        var signaturesOrderered = signatures.OrderBy(signature => _resolveSignatureScoresService.Score(signature));
+        var signaturesOrderered = Enum.GetValues<Signature>()
+            .OrderBy(signature => _resolveSignatureScoresService.Score(signature));
 
         var needToWin = new List<Signature>();
         while (true)
         {
             foreach (var signature in signaturesOrderered)
             {
+                var suggestToWin = needToWin.ToImmutableList().Add(signature);
                 if (maxScore.Value < _resolveSignatureScoresService
-                        .Accumulate(signatures.ToImmutableList().Concat(needToWin).Append(signature)).Value)
+                        .Accumulate(signatures.Concat(suggestToWin)).Value)
                 {
-                    return needToWin.Append(signature).ToArray();
+                    return suggestToWin.ToArray();
                 }
             }
 
-            needToWin.Append(signaturesOrderered.Last());
+            needToWin.Add(signaturesOrderered.Last());
         }
     }
 }
