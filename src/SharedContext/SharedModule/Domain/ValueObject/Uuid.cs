@@ -12,7 +12,7 @@ public record Uuid(string Value) : ValueObject<string>(Value)
     {
         if (!Regex.IsMatch(UuidRegex, Value))
         {
-            InvalidUuidException.ByValue(Value);
+            throw InvalidUuidException.ByValue(Value);
         }
     }
 
