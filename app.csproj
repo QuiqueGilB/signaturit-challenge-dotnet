@@ -4,12 +4,12 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>signaturit_challenge_dotnet</RootNamespace>
+    <RootNamespace>app</RootNamespace>
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
 
-    <XunitConsole Condition=" '$(OS)' == 'Windows_NT' ">&quot;$(XunitConsole472Path)&quot;</XunitConsole>
-    <XunitConsole Condition=" '$(OS)' != 'Windows_NT' ">mono &quot;$(XunitConsole472Path)&quot;</XunitConsole>
+    <XunitConsole Condition=" '$(OS)' == 'Windows_NT' ">"$(XunitConsole472Path)"</XunitConsole>
+    <XunitConsole Condition=" '$(OS)' != 'Windows_NT' ">mono "$(XunitConsole472Path)"</XunitConsole>
   </PropertyGroup>
 
   <ItemGroup>
@@ -36,9 +36,7 @@
   </ItemGroup>
 
   <Target Name="Test" DependsOnTargets="Build">
-    <Exec
-        Command="$(XunitConsole) $(TargetFileName)"
-        WorkingDirectory="$(TargetDir)" />
+    <Exec Command="$(XunitConsole) $(TargetFileName)" WorkingDirectory="$(TargetDir)" />
   </Target>
 
 </Project>
